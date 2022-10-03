@@ -1,0 +1,5 @@
+<PANTALLAS ubicacion="javascript:openWindow()" tiempo="3">
+<imagen nombre="SIR :: LOGIN" ubicacion="p001.jpg"/>
+<imagen nombre="SIR :: FASES" ubicacion="p002.jpg"/>
+<imagen nombre="SIR :: PROCESOS" ubicacion="p003.jpg"/>
+</PANTALLAS>

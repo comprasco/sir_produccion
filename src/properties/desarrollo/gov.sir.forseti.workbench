@@ -1,0 +1,25 @@
+version=3.2.9 (17 Jan 2005)
+# Workbench properties (Not used at run-time)
+versant.workbench.classpath.0=../../../proyecto/WEB-INF/lib/xRegionTemplate.taglib.jar
+versant.workbench.classpath.1=../../../proyecto/WEB-INF/lib/xml-apis.jar
+versant.workbench.classpath.2=../../../proyecto/WEB-INF/lib/xerces.jar
+versant.workbench.classpath.3=../../../proyecto/WEB-INF/lib/wfapi.jar
+versant.workbench.classpath.4=../../../proyecto/WEB-INF/lib/openaccess.jar
+versant.workbench.classpath.5=../../../proyecto/WEB-INF/lib/ojdbc14.jar
+versant.workbench.classpath.6=../../../proyecto/WEB-INF/lib/log4j-1.2.8.jar
+versant.workbench.classpath.7=../../../proyecto/WEB-INF/lib/junit.jar
+versant.workbench.classpath.8=../../../proyecto/WEB-INF/lib/jta.jar
+versant.workbench.classpath.9=../../../proyecto/WEB-INF/lib/jmxtools.jar
+versant.workbench.classpath.10=../../../proyecto/WEB-INF/lib/jmxri.jar
+versant.workbench.classpath.11=../../../proyecto/WEB-INF/lib/jdo.jar
+versant.workbench.classpath.12=../../../proyecto/WEB-INF/lib/iTextXML.jar
+versant.workbench.classpath.13=../../../proyecto/WEB-INF/lib/iText.jar
+versant.workbench.classpath.14=../../../proyecto/WEB-INF/lib/commons-logging.jar
+versant.workbench.classpath.15=../../../proyecto/WEB-INF/lib/commons-logging-api.jar
+versant.workbench.classpath.16=../../../proyecto/WEB-INF/lib/commons-jxpath-1.2.jar
+versant.workbench.classpath.17=../../../proyecto/WEB-INF/lib/commons-fileupload.jar
+versant.workbench.classpath.18=../../../proyecto/WEB-INF/lib/castor-0.9.4.1.jar
+versant.workbench.classpath.19=../../../proyecto/WEB-INF/lib/auriga.jar
+versant.workbench.classpath.20=../../../proyecto/WEB-INF/classes/
+versant.workbench.antBuildfile=../../build.xml
+versant.workbench.antCompile=Build

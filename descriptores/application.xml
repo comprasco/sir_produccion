@@ -1,0 +1,29 @@
+<application>
+  	<display-name>APPLICATION_NAME Server</display-name>
+  	<description>APPLICATION_NAME Server</description>
+
+ 	<!-- Modulo de la Aplicacion Web -->
+  	<module>
+   		<web>
+    		<web-uri>WAR_NAME</web-uri>
+     		<context-root>/APPLICATION_NAME</context-root>
+		</web>
+	</module>
+
+ 	<!-- Modulo del EJB para Fenrir -->
+	<module>
+  		<ejb>JAR_NAME_FENRIR</ejb>
+	</module>
+  
+	<!-- Modulo del EJB para Forseti -->
+	<module>
+  		<ejb>JAR_NAME_FORSETI</ejb>
+	</module>
+
+	<!-- Modulo del EJB para Hermod -->
+	<module>
+  		<ejb>JAR_NAME_HERMOD</ejb>
+	</module>
+</application>
+
+

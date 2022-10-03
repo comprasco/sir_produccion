@@ -1,0 +1,11 @@
+<jboss-app>
+	<loader-repository>APPLICATION_NAME:loader=EAR_NAME</loader-repository>
+	
+	<!--
+ 	<module>
+    	<service>persistent-APPLICATION_NAME.sar</service>
+  	</module>
+  	-->
+  	
+ 
+</jboss-app>

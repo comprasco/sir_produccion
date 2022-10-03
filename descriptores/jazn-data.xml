@@ -1,0 +1,209 @@
+<?xml version="1.0" standalone='yes'?>
+<!DOCTYPE jazn-data PUBLIC "JAZN-XML Data" "http://xmlns.oracle.com/ias/dtds/jazn-data.dtd">
+<jazn-data>
+
+<!-- JAZN Realm Data -->
+<jazn-realm>
+	<realm>
+		<name>pdc3</name>
+		
+    <users>
+			<user>
+				<name>usuario1</name>
+				<display-name>usuario1</display-name>
+				<credentials>!usuario1</credentials>
+			</user>
+			<user>
+				<name>usuario2</name>
+				<display-name>usuario2</display-name>
+				<credentials>!usuario2</credentials>
+			</user>
+			<user>
+				<name>usuario3</name>
+				<display-name>usuario3</display-name>
+				<credentials>!usuario3</credentials>
+			</user>
+			<user>
+				<name>usuariovlnv</name>
+				<display-name>usuariovlnv</display-name>
+				<credentials>!usuariovlnv</credentials>
+			</user>
+			<user>
+				<name>usuarioacu1</name>
+				<display-name>usuarioacu1</display-name>
+				<credentials>!usuarioacu1</credentials>
+			</user>
+			<user>
+				<name>usuarioacu2</name>
+				<display-name>usuarioacu2</display-name>
+				<credentials>!usuarioacu2</credentials>
+			</user>
+			<user>
+				<name>usuarioacu3</name>
+				<display-name>usuarioacu3</display-name>
+				<credentials>!usuarioacu3</credentials>
+			</user>      
+			<user>
+				<name>usuarioandc1</name>
+				<display-name>usuarioandc1</display-name>
+				<credentials>!usuarioandc1</credentials>
+			</user>
+			<user>
+				<name>usuarioandc2</name>
+				<display-name>usuarioandc2</display-name>
+				<credentials>!usuarioandc2</credentials>
+			</user>
+      <user>
+				<name>usuarioandc3</name>
+				<display-name>usuarioandc3</display-name>
+				<credentials>!usuarioandc3</credentials>
+			</user>
+      <user>
+				<name>usuarioaddc1</name>
+				<display-name>usuarioaddc1</display-name>
+				<credentials>!usuarioaddc1</credentials>
+			</user>         
+      
+			<user>
+				<name>usuarioatcs1</name>
+				<display-name>usuarioatcs1</display-name>
+				<credentials>!usuarioatcs1</credentials>
+			</user>
+ 			<user>
+				<name>usuarioatcc1</name>
+				<display-name>usuarioatcc1</display-name>
+				<credentials>!usuarioatcc1</credentials>
+			</user>
+      
+     
+    </users>
+    
+		<roles>
+			<role>
+				<name>grupoalnv</name>
+				<display-name>Grupo ALNV</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuario1</name>
+					</member>
+				</members>
+			</role>
+			<role>
+				<name>grupoacu</name>
+				<display-name>Grupo ACU</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuarioacu1</name>
+					</member>
+					<member>
+						<type>user</type>
+						<name>usuarioacu2</name>
+					</member>
+					<member>
+						<type>user</type>
+						<name>usuarioacu3</name>
+					</member>          
+        </members>
+			</role>
+      
+		  <role>  
+				<name>grupoandc</name>
+				<display-name>Grupo ANDC</display-name>
+				<members>
+					
+          <member>
+						<type>user</type>
+						<name>usuarioandc1</name>
+					</member>
+          <member>
+						<type>user</type>
+						<name>usuarioandc2</name>
+					</member>
+          <member>
+						<type>user</type>
+						<name>usuarioandc3</name>
+					</member>
+          
+				</members>
+			</role>
+      
+      <role>  
+				<name>grupoaddc</name>
+				<display-name>Grupo ADDC</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuarioaddc1</name>
+					</member>
+				</members>
+			</role>       
+
+		  <role>  
+				<name>grupoatcs</name>
+				<display-name>Grupo ATCS</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuarioatcs1</name>
+					</member>
+				</members>
+			</role>
+      
+		  <role>  
+				<name>grupoatcc</name>
+				<display-name>Grupo ATCC</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuarioatcc1</name>
+					</member>
+				</members>
+			</role>      
+      
+		  <role>  
+				<name>gruponlnv</name>
+				<display-name>Grupo NLNV</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuario2</name>
+					</member>
+				</members>
+			</role>      
+      
+      
+		  <role>  
+				<name>grupovlnv</name>
+				<display-name>Grupo VLNV</display-name>
+				<members>
+					<member>
+						<type>user</type>
+						<name>usuario3</name>
+					</member>
+				</members>
+			</role>      
+      
+
+    </roles>
+	</realm>
+</jazn-realm>
+
+<!-- JAZN Policy Data -->
+<jazn-policy>
+</jazn-policy>
+
+<!-- Permission Class Data -->
+<jazn-permission-classes>
+</jazn-permission-classes>
+
+<!-- Principal Class Data -->
+<jazn-principal-classes>
+</jazn-principal-classes>
+
+<!-- Login Module Data -->
+<jazn-loginconfig>
+</jazn-loginconfig>
+
+</jazn-data>

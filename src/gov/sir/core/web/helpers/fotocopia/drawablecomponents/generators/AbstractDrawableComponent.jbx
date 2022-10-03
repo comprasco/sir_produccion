@@ -1,0 +1,11 @@
+[PropertyInfo]
+attributes,gov.sir.core.web.helpers.fotocopia.drawablecomponents.generators.DrawableComponentAttributes,false,false, , ,false,<default>
+id,String,false,false, , ,true,<default>
+id,Object,false,false, , ,true,<default>
+renderMode,int,false,false, , ,true,<default>
+value,Object,false,false, , ,true,<default>
+[IconNames]
+
+
+
+

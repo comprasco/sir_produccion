@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.3//EN" "http://www.jboss.org/j2ee/dtd/jboss-web_3_2.dtd">
+<jboss-web>
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/FenrirServiceEJBLocal</ejb-ref-name>
+        <local-jndi-name>ejb/FenrirServiceEJBLocal</local-jndi-name>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/ForsetiServiceEJBLocal</ejb-ref-name>
+        <local-jndi-name>ejb/ForsetiServiceEJBLocal</local-jndi-name>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/HermodServiceEJBLocal</ejb-ref-name>
+        <local-jndi-name>ejb/HermodServiceEJBLocal</local-jndi-name>
+    </ejb-local-ref>
+</jboss-web>

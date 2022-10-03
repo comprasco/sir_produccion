@@ -1,0 +1,905 @@
+<project name="SIR_PRODUCCION" default="Build" basedir=".">
+	<!-- Cargar archivo de propiedades -->
+	<property  environment="env"/>
+  	<property file="nbproject/build.properties" />
+
+	<!-- Inicializar propiedades -->
+  	<target name="Init">
+
+  		<!--  Se obtiene la fecha actual del sistema -->
+	  	<tstamp>
+			<format property="fecha" pattern="yyyy-MM-dd"/>
+	  	</tstamp>
+
+	  	<!-- Se pide al usuario el nombre de la carpeta de propiedades -->
+  		<input message="Digite el nombre de las propiedades: "
+			validargs="calidad,desarrollo,produccion"
+			addproperty="sir.build.properties"/>
+
+  		<!-- Se determina el prefijo del directorio de deploy -->
+	  	<condition property="sir.ear.prefix" value="TEST">
+			<equals arg1="produccion_pruebas" arg2="${sir.build.properties}"/>
+	  	</condition>
+
+		  	<condition property="sir.ear.prefix" value="TEST">
+				<equals arg1="produccion_pruebas_11" arg2="${sir.build.properties}"/>
+		  	</condition>  		
+
+		<condition property="sir.ear.prefix" value="PROD">
+			<and>
+				<not>
+					<isset property="sir.ear.prefix"/>
+				</not>
+				<equals arg1="produccion" arg2="${sir.build.properties}"/>
+			</and>
+		</condition>
+
+		<condition property="sir.ear.prefix" value="CALID">
+			<and>
+				<not>
+					<isset property="sir.ear.prefix"/>
+				</not>
+				<equals arg1="calidad" arg2="${sir.build.properties}"/>
+			</and>
+		</condition>
+			
+  		<condition property="sir.ear.prefix" value="DESA">
+			<and>
+				<not>
+  			  		<isset property="sir.ear.prefix"/>
+				</not>
+				<equals arg1="desarrollo" arg2="${sir.build.properties}"/>
+			</and>
+		</condition>
+
+		<condition property="sir.ear.prefix" value="DESA" else="">
+			<and>
+				<not>
+					<isset property="sir.ear.prefix"/>
+				</not>
+				<equals arg1="capacitacion" arg2="${sir.build.properties}"/>
+			</and>
+		</condition>
+
+		<!--  Se inicializan la propiedades -->
+		<echo message="Directorio de propiedades: ${sir.build.properties}"/>
+		<echo message="Inicializando propiedades"/>
+
+		<property name="jdo.tools" value="${jdo.home}/tools"/>
+		<property name="sir.release.dir" value="SIR_${sir.ear.prefix}_${fecha}"/>
+		<property name="base.dir" value="${sir.build.proyecto}"/>
+		<property name="src.dir" value="${sir.build.source}"/>
+		<property name="properties.dir" value="${src.dir}/properties/${sir.build.properties}"/>
+		<property name="jdo.forseti.project" value = "${properties.dir}/gov.sir.forseti.properties"/>
+		<property name="jdo.hermod.project"  value = "${properties.dir}/gov.sir.hermod.properties"/>
+		<property name="jdo.fenrir.project"  value = "${properties.dir}/gov.sir.fenrir.properties"/>
+		<property name="xdoclet.lib" value="${xdoclet.home}/lib"/>
+		<property name="build.classes.dir" value="${sir.build.classes}"/>
+		<property name="build.deploy.dir" value="${sir.deploy.dir}/${sir.release.dir}"/>
+		<property name="xdoclet.temp.dir" value="${build.deploy.dir}/temp-xdoclet"/>
+		<property name="jar.temp.dir" value="${build.deploy.dir}/temp-jar"/>
+
+	  	<!-- Se inicializa el Classpath generico para las demas tareas de Ant -->
+		<path id="rutas">
+			<pathelement path="${sir.build.classes}" />
+			<pathelement path="${jdo.license}" />
+			<fileset dir="${java.j2ee.lib}" includes="**/*.jar" />
+		  	<fileset dir="${sir.build.lib}" includes="**/*.jar" />
+		  	<pathelement location="${build.classes.dir}" />
+		  	<fileset dir="${xdoclet.lib}">
+				<include name="*.jar" />
+		  	</fileset>
+		</path>
+
+		<taskdef resource="jdogenie.tasks">
+			<classpath>
+				<path refid="rutas" />
+				<fileset dir="${sir.build.lib}" includes="**/*.jar" />
+			</classpath>
+		</taskdef>
+	</target>
+
+	<!-- Limpiar directorio de compilacion -->
+  	<target name="Clean">
+
+  		<!-- Validar variables -->
+  		<fail unless="sir.build.classes"/>
+
+  		<echo message="Limpiando directorio de compilacion"/>
+  		<delete dir="${sir.build.classes}" />
+  	</target>
+
+	<!-- Compila el proyecto -->
+	<target name="Build" depends="Init,Clean,GenerateEjbs" description="Compila el codigo del proyecto">
+
+		<!-- Validar variables -->
+  		<fail unless="sir.build.classes"/>
+  		<fail unless="src.dir"/>
+  		<fail unless="java.compile.debug"/>
+  		<fail unless="jdo.licence"/>
+  		<fail unless="properties.dir"/>
+  		<fail unless="jdo.forseti.project"/>
+  		<fail unless="jdo.fenrir.project"/>
+  		<fail unless="jdo.hermod.project"/>
+  		<fail unless="jdo.mapping.file"/>
+  		<fail unless="jdo.proyecto"/>
+  		<fail unless="xdoclet.temp.dir"/>
+
+		<!-- Se crea el directorio de compilacion, si no existe -->
+		<mkdir dir="${sir.build.classes}" />
+
+		<!-- Establecer dependencias -->
+		<dependset>
+			<srcfileset dir="${src.dir}" includes="**/*.jdo" />
+			<targetfileset dir="${sir.build.classes}" includes="**/*.class" />
+		</dependset>
+
+		<!-- Se compila el proyecto -->
+		<javac srcdir="${src.dir}" destdir="${sir.build.classes}" classpathref="rutas" debug="${java.compile.debug}"  fork="${sir.compile.jvm.fork}" memoryInitialSize="${sir.compile.jvm.memoryInitialSize}" memoryMaximumSize="${sir.compile.jvm.memoryMaximumSize}" >
+			<src path="${xdoclet.temp.dir}/source"/>
+		</javac>
+
+		<!-- Se copian los archivos que no constituyen codigo, tales como archivos XML, licencias, etc. -->
+		<copy file="${src.dir}/${jdo.licence}" todir="${sir.build.classes}" />
+		<copy todir="${sir.build.classes}">
+			<fileset dir="${properties.dir}" includes="*.properties"/>
+			<fileset dir="${src.dir}" includes="*.xml" excludes="build*"/>
+			<fileset dir="${src.dir}" includes="**/META-INF/**"/>
+			<fileset dir="${src.dir}" includes="*.gif" />
+		    <fileset dir="${sir.build.source}" includes="*.jpg" />
+			<fileset dir="${src.dir}">
+				<filename name="**/*.policy"/>
+			</fileset>			
+		</copy>
+		<copy file="${jdo.forseti.project}" todir="${sir.build.classes}" />
+		<copy file="${jdo.fenrir.project}" todir="${sir.build.classes}" />
+		<copy file="${jdo.hermod.project}" todir="${sir.build.classes}" />
+		<copy file="${src.dir}/${jdo.mapping.file}" todir="${sir.build.classes}" />
+		<copy todir="${sir.build.classes}/gov/sir/core/web">
+		    <fileset dir="${sir.build.source}/gov/sir/core/web" includes="*.policy, *.properties, *.gif , *.jpg"/>
+		</copy>
+		<copy todir="${sir.build.classes}/gov/sir/print/client">
+   			<fileset dir="${src.dir}/gov/sir/print/client" includes="*.policy, *.properties, *.gif, *.jpg"/>
+   			<fileset dir="${src.dir}/gov/sir/print/client/plus" includes="*.policy, *.properties, *.gif, *.jpg"/>
+ 		</copy>
+
+		<!-- Se extiende el modelo del sistema para uso de JDO -->
+		<jdo-enhance project="${jdo.proyecto}" outputdir="${sir.build.classes}">
+			<persistentaware dir="${sir.build.classes}" />
+		</jdo-enhance>
+	</target>
+
+	<!-- Genera la documentacion del codigo del proyecto por medio de Javadoc -->
+	<target name="CreateJavadoc" depends="Init">
+
+		<!-- Validar variables -->
+  		<fail unless="sir.javadoc"/>
+  		<fail unless="src.dir"/>
+
+		<!-- Crea el directorio de Javadoc, si no existe -->
+    	<mkdir dir="${sir.javadoc}" />
+
+    	<!-- Ejecuta Javadoc -->
+		<javadoc destdir="${sir.javadoc}" packagenames="gov.sir.*" author="true" classpathref="rutas">
+			<doctitle>SIR - Sistema de Informacion y Registro</doctitle>
+			<sourcepath>
+				<pathelement location="${src.dir}" />
+			</sourcepath>
+		</javadoc>
+	</target>
+
+	<!-- Crea los Jars necesarios para Auriga -->
+	<target name="CreateLibJars" depends="Build">
+
+		<!-- Validar variables -->
+		<fail unless="sir.build.lib"/>
+		<fail unless="sir.jar.ejb.jar"/>
+		<fail unless="sir.jar.ejb.source"/>
+		<fail unless="sir.jar.ejb.path"/>
+		<fail unless="sir.jar.ejb.excluded"/>
+		<fail unless="sir.jar.print.common.jar"/>
+		<fail unless="sir.jar.print.common.source"/>
+		<fail unless="sir.jar.print.common.path"/>
+		<fail unless="sir.jar.print.common.excluded"/>
+		<fail unless="sir.jar.modelo.jar"/>
+		<fail unless="sir.jar.modelo.source"/>
+		<fail unless="sir.jar.modelo.path"/>
+		<fail unless="sir.jar.modelo.excluded"/>
+		<fail unless="sir.jar.modelo.enhanced.jar"/>
+		<fail unless="sir.jar.modelo.enhanced.source"/>
+		<fail unless="sir.jar.modelo.enhanced.path"/>
+		<fail unless="sir.jar.modelo.enhanced.excluded"/>
+		<fail unless="sir.jar.core.jar"/>
+		<fail unless="sir.jar.core.source"/>
+		<fail unless="sir.jar.core.path"/>
+		<fail unless="sir.jar.core.excluded"/>
+
+		<mkdir dir="${jar.temp.dir}"/>
+
+		<!-- Crea el Jar con el Delegado EJB -->
+  		<delete file="${jar.temp.dir}/${sir.jar.ejb.jar}" quiet="true"/>
+  		<jar jarfile="${jar.temp.dir}/${sir.jar.ejb.jar}" basedir="${sir.jar.ejb.source}"
+  			includes="${sir.jar.ejb.path}" excludes="${sir.jar.ejb.excluded}"/>
+
+  		<!-- Creal el Jar con el sistema de impresion -->
+  		<!--
+  		<delete file="${sir.build.lib}/${sir.jar.print.common.jar}" quiet="true"/>
+  		<jar jarfile="${sir.build.lib}/${sir.jar.print.common.jar}" basedir="${sir.jar.print.common.source}"
+  			includes="${sir.jar.print.common.path}" excludes="${sir.jar.print.common.excluded}"/>
+  		-->
+
+  		<delete file="${jar.temp.dir}/${sir.jar.print.jar}" quiet="true"/>
+  		<jar jarfile="${jar.temp.dir}/${sir.jar.print.jar}" basedir="${sir.jar.print.source}"
+  			includes="${sir.jar.print.path}" excludes="${sir.jar.print.excluded}"/>
+
+  		<!-- Crea el Jar con las clases del modelo del sistema -->
+  		<!--
+		<delete file="${sir.build.lib}/${sir.jar.modelo.jar}" quiet="true"/>
+		<jar destfile="${sir.build.lib}/${sir.jar.modelo.jar}" basedir="${sir.jar.modelo.source}"
+			includes="${sir.jar.modelo.path}" excludes="${sir.jar.modelo.excluded}" />
+		-->
+
+		<!-- Crea el Jar con las clases JDO del modelo del sistema -->
+		<!--
+		<delete file="${sir.build.lib}/${sir.jar.modelo.enhanced.jar}" quiet="true"/>
+		<jar destfile="${sir.build.lib}/${sir.jar.modelo.enhanced.jar}" basedir="${sir.jar.modelo.enhanced.source}"
+			includes="${sir.jar.modelo.enhanced.path}" excludes="${sir.jar.modelo.enhanced.excluded}" />
+		-->
+
+		<!-- Crea el Jar con todo el nucleo del sistema, exceptuando el modelo -->
+
+		<delete file="${jar.temp.dir}/${sir.jar.core.jar}" quiet="true"/>
+		<jar destfile="${jar.temp.dir}/${sir.jar.core.jar}" basedir="${sir.jar.core.source}"
+			includes="${sir.jar.core.path}" excludes="${sir.jar.core.excluded}"/>
+
+		<delete file="${jar.temp.dir}/${sir.jar.mapas.jar}" quiet="true"/>
+		<jar destfile="${jar.temp.dir}/${sir.jar.mapas.jar}" basedir="${sir.jar.mapas.source}"
+			includes="${sir.jar.mapas.path}" excludes="${sir.jar.mapas.excluded}"/>
+  	</target>
+
+	<!-- Genera el archivo mapas.jar -->
+	<target name="GenerarMapa" depends="Init" >
+		<delete dir="${jar.temp.dir}/${sir.build.properties}" quiet="true"/>
+		<mkdir dir="${jar.temp.dir}/${sir.build.properties}"/>
+		<delete file="${jar.temp.dir}/${sir.build.properties}/${sir.jar.mapas.jar}" quiet="true"/>
+		<delete file="${build.deploy.dir}/${lib.dir}/${sir.build.properties}/${sir.jar.mapas.shortname.jar}" quiet="true"/>
+		<jar destfile="${jar.temp.dir}/${sir.build.properties}/${sir.jar.mapas.jar}" basedir="${sir.jar.mapas.source}"
+			includes="${sir.jar.mapas.path}" excludes="${sir.jar.mapas.excluded}"/>
+		
+		<copy todir="${build.deploy.dir}/${lib.dir}/${sir.build.properties}">
+			<fileset dir="${jar.temp.dir}/${sir.build.properties}" includes="${sir.jar.mapas.jar}"/>
+		</copy>
+		
+		<!-- Se cambia el nombre extenso de las librerias -->
+		<move file="${build.deploy.dir}/${lib.dir}/${sir.build.properties}/${sir.jar.mapas.jar}"
+			tofile="${build.deploy.dir}/${lib.dir}/${sir.build.properties}/${sir.jar.mapas.shortname.jar}"/>
+		<delete dir="${jar.temp.dir}" quiet="true"/>
+	</target>
+	<!-- ****** -->
+	
+	<!-- Crea los Jars publicos que se almacenan en la carpeta de Jars publicos del proyecto, para uso por el WAR -->
+	<target name="CreatePublicJars" depends="Build">
+
+		<!-- Validar variables -->
+		<fail unless="sir.jar.target"/>
+		<fail unless="sir.jar.modelo.jar"/>
+		<fail unless="sir.jar.modelo.source"/>
+		<fail unless="sir.jar.modelo.path"/>
+		<fail unless="sir.jar.modelo.excluded"/>
+		<fail unless="sir.jar.print.client.jar"/>
+		<fail unless="sir.jar.print.client.source"/>
+		<fail unless="sir.jar.print.client.path"/>
+		<fail unless="sir.jar.print.client.excluded"/>
+		<fail unless="sir.jar.excepciones.jar"/>
+		<fail unless="sir.jar.excepciones.source"/>
+		<fail unless="sir.jar.excepciones.path"/>
+		<fail unless="sir.jar.excepciones.excluded"/>
+
+		<!-- Crea el directorio de destino de los Jars, si no existe -->
+		<mkdir dir="${sir.jar.target}" />
+
+		<!-- Copia otros archivos necesarios a la carpeta de los Jars publicos -->
+    	<delete file="${sir.jar.target}/icono3.gif" quiet="true"/>
+    	<copy file="${src.dir}/icono3.gif" todir="${sir.jar.target}" />
+
+    	<delete file="${sir.jar.target}/waterMark.gif" quiet="true"/>
+    	<copy file="${src.dir}/waterMark.gif" todir="${sir.jar.target}" />
+		
+		<!-- Crea el Jar con las clases del modelo del sistema -->
+		<delete file="${sir.jar.target}/${sir.jar.modelo.jar}" quiet="true"/>
+		<jar destfile="${sir.jar.target}/${sir.jar.modelo.jar}" basedir="${sir.jar.modelo.source}"
+			includes="${sir.jar.modelo.path}" excludes="${sir.jar.modelo.excluded}" />
+
+    	<!-- Crea el Jar con la funcionalidad de impresion del sistema -->
+		<delete file="${sir.jar.target}/${sir.jar.print.client.jar}" quiet="true"/>
+    	<jar destfile="${sir.jar.target}/${sir.jar.print.client.jar}" basedir="${sir.jar.print.client.source}"
+    		includes="${sir.jar.print.client.path}" excludes="${sir.jar.print.client.excluded}"/>
+
+    	<!-- Crea el Jar con las clases de las excepciones -->
+    	<delete file="${sir.jar.target}/${sir.jar.excepciones.jar}" quiet="true"/>
+    	<jar destfile="${sir.jar.target}/${sir.jar.excepciones.jar}" basedir="${sir.jar.excepciones.source}"
+    		includes="${sir.jar.excepciones.path}" excludes="${sir.jar.excepciones.excluded}"/>
+
+    	<!-- Genera la el certificado para firmar el Jar de impresion -->
+    	<delete file="${sir.jar.target}/sirStore" quiet="true"/>
+    	<genkey alias="SIRKey" storepass="siglo21" keystore="${sir.jar.target}/sirStore" validity="10000">
+    		<dname>
+				<param name="CN" value="SIR" />
+				<param name="OU" value="Certificados" />
+				<param name="O" value="ETB-INTEK" />
+				<param name="C" value="CO" />
+			</dname>
+		</genkey>
+		
+
+		<!-- Firma el Jar de impresion con el certificado recien generado -->
+    	<signjar jar="${sir.jar.target}/${sir.jar.print.client.jar}" alias="SIRKey" storepass="siglo21"
+    		signedjar="${sir.jar.target}/signed.${sir.jar.print.client.jar}"
+    		keystore="${sir.jar.target}/sirStore" verbose="false" />
+			
+		<signjar jar="${sir.jar.target}/${auriga.modelo.jar}" alias="SIRKey" storepass="siglo21"
+    		signedjar="${sir.jar.target}/signed.${auriga.modelo.jar}"
+    		keystore="${sir.jar.target}/sirStore" verbose="false" />
+    	
+		<signjar jar="${sir.jar.target}/${sir.jar.modelo.jar}" alias="SIRKey" storepass="siglo21"
+    		signedjar="${sir.jar.target}/signed.${sir.jar.modelo.jar}"
+    		keystore="${sir.jar.target}/sirStore" verbose="false" />
+    	
+		<signjar jar="${sir.jar.target}/${sir.jar.excepciones.jar}" alias="SIRKey" storepass="siglo21"
+    		signedjar="${sir.jar.target}/signed.${sir.jar.excepciones.jar}"
+    		keystore="${sir.jar.target}/sirStore" verbose="false" />
+		
+		<signjar jar="${sir.jar.target}/FontBox-0.1.0-dev.jar" alias="SIRKey" storepass="siglo21"
+		  	signedjar="${sir.jar.target}/signed.FontBox-0.1.0-dev.jar"
+		  	keystore="${sir.jar.target}/sirStore" verbose="false" />
+		
+		<signjar jar="${sir.jar.target}/PDFBox-0.7.3.jar" alias="SIRKey" storepass="siglo21"
+			signedjar="${sir.jar.target}/signed.PDFBox-0.7.3.jar"
+		  	keystore="${sir.jar.target}/sirStore" verbose="false" />
+		
+		<signjar jar="${sir.jar.target}/iText.jar" alias="SIRKey" storepass="siglo21"
+			signedjar="${sir.jar.target}/signed.iText.jar"
+			keystore="${sir.jar.target}/sirStore" verbose="false" />
+		
+		<signjar jar="${sir.jar.target}/log4j-1.2.8.jar" alias="SIRKey" storepass="siglo21"
+			signedjar="${sir.jar.target}/signed.log4j-1.2.8.jar"
+			keystore="${sir.jar.target}/sirStore" verbose="false" />
+    		
+	</target>
+
+  	<target name="GenerateEjbs" depends="CreateDeployDir" description="Generates the necessary EJB classes and deployment descriptors">
+
+  		<!-- Validar variables -->
+  		<fail unless="ejb.version"/>
+  		<fail unless="xdoclet.force"/>
+  		<fail unless="src.dir"/>
+  		<fail unless="jboss.version"/>
+  		<fail unless="oc4j.version"/>
+  		<fail unless="fenrir.ejb.bean.name"/>
+  		<fail unless="fenrir.ejb.path"/>
+  		<fail unless="forseti.ejb.bean.name"/>
+  		<fail unless="forseti.ejb.path"/>
+  		<fail unless="hermod.ejb.bean.name"/>
+  		<fail unless="hermod.ejb.path"/>
+  		<fail unless="xdoclet.temp.dir"/>
+
+	    <!-- Se declara la tarea para manejar XDoclet -->
+		<taskdef name="ejbdoclet"
+			classname="xdoclet.modules.ejb.EjbDocletTask"
+			classpathref="rutas"/>
+
+		<!-- Crear directorio temporal para XDoclet -->
+		<delete dir="${xdoclet.temp.dir}"/>
+		<mkdir dir="${xdoclet.temp.dir}"/>
+		<mkdir dir="${xdoclet.temp.dir}/source"/>
+
+		<!-- Se eliminan todas las interfaces locales y remotas -->
+		<!--
+			De no realizarse este paso, XDoclet no cambiara la interfaces que
+			este genere, por lo que no se veran los cambios hechos en el Bean
+		-->
+		<delete quiet="true">
+			<fileset dir="${src.dir}" includes="**/fenrir/ejb/*Interface*.java"/>
+			<fileset dir="${src.dir}" includes="**/forseti/ejb/*Interface*.java"/>
+			<fileset dir="${src.dir}" includes="**/hermod/ejb/*Interface*.java"/>
+		</delete>
+
+		<!-- Genera las clases y descriptores para los servicios EJB -->
+		<!--
+  			Descomentar esta tarea cuando se quiera tener todos los servicios en
+  			un mismo JAR. Si se descomenta esta tarea, se deberan comentar las
+  			tareas que le siguen, ya que estas generaran descriptores para cada
+  			uno de los servicios.
+  		-->
+		<!--
+		<ejbdoclet destdir="${build.deploy.dir}" excludedtags="@version,@author" ejbspec="${ejb.version}"
+  			force="${xdoclet.force}" addedtags="" verbose="false" if="ejb.unicojar">
+
+  			<!- Define el conjunto de Beans a analizar ->
+      		<fileset dir="${src.dir}">
+	    		<include name="**/*Bean.java" />
+  	  		</fileset>
+
+			<!- Se generan las interfaces para el EJB ->
+			<remoteinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceRemote" />
+			<localinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocal" />
+  	  		<homeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceHome" />
+  	  		<localhomeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocalHome" />
+
+  	  		<!- Se genera el descriptor del EJB ->
+  	  		<deploymentdescriptor destdir="${xdoclet.temp.dir}/META-INF"/>
+
+  	  		<!- Se genera el descriptor del EJB para JBoss ->
+  	  		<jboss version="${jboss.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/META-INF"
+  	  			validateXml="false" />
+
+  	  		<!- Se genera el descriptor del EJB para OC4J ->
+  	  		<oc4j version="${oc4j.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/META-INF"
+  	  			validateXml="false" />
+  		</ejbdoclet>
+  		-->
+
+  		<!-- Genera Jar con el EJB del servicio Fenrir -->
+  		<ejbdoclet destdir="${build.deploy.dir}" excludedtags="@version,@author" ejbspec="${ejb.version}"
+  			force="${xdoclet.force}" addedtags="" verbose="false">
+
+  			<!-- Define el conjunto de Beans a analizar -->
+      		<fileset dir="${src.dir}">
+	    		<include name="**/${fenrir.ejb.bean.name}.java" />
+  	  		</fileset>
+
+			<!-- Se generan las interfaces para el EJB -->
+			<remoteinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceRemote" />
+			<localinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocal" />
+  	  		<homeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceHome" />
+  	  		<localhomeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocalHome" />
+
+  	  		<!-- Se genera el descriptor del EJB -->
+  	  		<deploymentdescriptor destdir="${xdoclet.temp.dir}/fenrir/META-INF"/>
+
+  	  		<!-- Se genera el descriptor del EJB para JBoss -->
+  	  		<jboss version="${jboss.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/fenrir/META-INF"
+  	  			validateXml="false" />
+
+  	  		<!-- Se genera el descriptor del EJB para OC4J -->
+  	  		<oc4j version="${oc4j.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/fenrir/META-INF"
+  	  			validateXml="false" />
+  		</ejbdoclet>
+
+  		<!-- Genera Jar con el EJB del servicio Forseti -->
+  		<ejbdoclet destdir="${build.deploy.dir}" excludedtags="@version,@author" ejbspec="${ejb.version}"
+  			force="${xdoclet.force}" addedtags="" verbose="false">
+
+  			<!-- Define el conjunto de Beans a analizar -->
+      		<fileset dir="${src.dir}">
+	    		<include name="**/${forseti.ejb.bean.name}.java" />
+  	  		</fileset>
+
+			<!-- Se generan las interfaces para el EJB -->
+			<remoteinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceRemote" />
+			<localinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocal" />
+  	  		<homeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceHome" />
+  	  		<localhomeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocalHome" />
+
+  	  		<!-- Se genera el descriptor del EJB -->
+  	  		<deploymentdescriptor destdir="${xdoclet.temp.dir}/forseti/META-INF"/>
+
+  	  		<!-- Se genera el descriptor del EJB para JBoss -->
+  	  		<jboss version="${jboss.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/forseti/META-INF"
+  	  			validateXml="false" />
+
+  	  		<!-- Se genera el descriptor del EJB para OC4J -->
+  	  		<oc4j version="${oc4j.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/forseti/META-INF"
+  	  			validateXml="false" />
+  		</ejbdoclet>
+
+  		<!-- Genera Jar con el EJB del servicio Hermod -->
+  		<ejbdoclet destdir="${build.deploy.dir}" excludedtags="@version,@author" ejbspec="${ejb.version}"
+  			force="${xdoclet.force}" addedtags="" verbose="false">
+
+  			<!-- Define el conjunto de Beans a analizar -->
+      		<fileset dir="${src.dir}">
+	    		<include name="**/${hermod.ejb.bean.name}.java" />
+  	  		</fileset>
+
+			<!-- Se generan las interfaces para el EJB -->
+			<remoteinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceRemote" />
+			<localinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocal" />
+  	  		<homeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceHome" />
+  	  		<localhomeinterface destdir="${xdoclet.temp.dir}/source" pattern="{0}InterfaceLocalHome" />
+
+  	  		<!-- Se genera el descriptor del EJB -->
+  	  		<deploymentdescriptor destdir="${xdoclet.temp.dir}/hermod/META-INF"/>
+
+  	  		<!-- Se genera el descriptor del EJB para JBoss -->
+  	  		<jboss version="${jboss.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/hermod/META-INF"
+  	  			validateXml="false" />
+
+  	  		<!-- Se genera el descriptor del EJB para OC4J -->
+  	  		<oc4j version="${oc4j.version}" xmlencoding="UTF-8" destdir="${xdoclet.temp.dir}/hermod/META-INF"
+  	  			validateXml="false" />
+  		</ejbdoclet>
+	</target>
+
+	<!-- Crea el directorio de despliegue -->
+	<target name="CreateDeployDir" description="Crea el directorio de deploy">
+
+		<!-- Elimina el directorio (si existe) y lo crea -->
+		<delete dir="${build.deploy.dir}" quiet="true"/>
+		<mkdir dir="${build.deploy.dir}"/>
+	</target>
+
+	<!-- Crea los Jars de los EJB's -->
+  	<target name="CreateEjbJars" depends="Build"
+  		description="Crea los archivos Jar de los EJB's Fenrir, Forseti y Hermod">
+
+  		<!-- Validar variables -->
+  		<fail unless="build.deploy.dir"/>
+  		<fail unless="build.classes.dir"/>
+  		<fail unless="fenrir.ejb.bean.name"/>
+  		<fail unless="fenrir.ejb.path"/>
+  		<fail unless="fenrir.ejb.jar"/>
+  		<fail unless="forseti.ejb.bean.name"/>
+  		<fail unless="forseti.ejb.path"/>
+  		<fail unless="forseti.ejb.jar"/>
+  		<fail unless="hermod.ejb.bean.name"/>
+  		<fail unless="hermod.ejb.path"/>
+  		<fail unless="hermod.ejb.jar"/>
+
+  		<!-- Crea el Jar con los servicios EJB -->
+  		<!--
+  			Descomentar esta tarea cuando se quiera tener todos los servicios en
+  			un mismo JAR. Si se descomenta esta tarea, se deberan comentar las
+  			tareas que le siguen, ya que estas crearan un JAR para cada servicio.
+  		-->
+  		<!--
+		<delete file="${build.deploy.dir}/servicios-ejb.jar" quiet="true"/>
+		<jar jarfile="${build.deploy.dir}/servicios-ejb.jar">
+			<manifest>
+	  			<attribute name="Class-Path" value="sir-modelo.jar auriga-modelo.jar sir-modelo-enh.jar sir-print.jar"/>
+	  		</manifest>
+			<fileset dir="${build.classes.dir}" includes="gov/sir/fenrir/**"/>
+			<fileset dir="${build.classes.dir}" includes="gov/sir/hermod/**"/>
+			<fileset dir="${build.classes.dir}" includes="gov/sir/forseti/**"/>
+			<fileset dir="${build.classes.dir}" includes="gov/sir/print/**"/>
+	  		<fileset dir="${xdoclet.temp.dir}" includes="META-INF/**"/>
+	  	</jar>
+
+	  	<copy file="${build.deploy.dir}/servicios-ejb.jar" todir="${sir.build.lib}"/>
+	  	-->
+
+	  	<!-- Crea el Jar del EJB del servicio Fenrir -->
+		<delete file="${build.deploy.dir}/${fenrir.ejb.jar}" quiet="true"/>
+		<jar jarfile="${build.deploy.dir}/${fenrir.ejb.jar}">
+			<manifest>
+	  			<attribute name="Class-Path" value="${fenrir.ejb.manifest.classpath}"/>
+	  		</manifest>
+	  		<fileset dir="${build.classes.dir}" includes="gov/sir/fenrir/**"/>
+	  		<fileset dir="${xdoclet.temp.dir}/fenrir" includes="META-INF/**"/>
+	  	</jar>
+
+	  	<!-- Crea el Jar del EJB del servicio Forseti -->
+	  	<delete file="${build.deploy.dir}/${forseti.ejb.jar}" quiet="true"/>
+	  	<jar jarfile="${build.deploy.dir}/${forseti.ejb.jar}">
+	  		<manifest>
+	  			<attribute name="Class-Path" value="${forseti.ejb.manifest.classpath}"/>
+	  		</manifest>
+	  		<fileset dir="${build.classes.dir}" includes="gov/sir/forseti/**"/>
+	  		<fileset dir="${xdoclet.temp.dir}/forseti" includes="META-INF/**"/>
+	  	</jar>
+
+	  	<!-- Crea el Jar del EJB del servicio Fenrir -->
+	  	<delete file="${build.deploy.dir}/${hermod.ejb.jar}" quiet="true"/>
+	  	<jar jarfile="${build.deploy.dir}/${hermod.ejb.jar}">
+	  		<manifest>
+	  			<attribute name="Class-Path" value="${hermod.ejb.manifest.classpath}"/>
+	  		</manifest>
+			<fileset dir="${build.classes.dir}" includes="gov/sir/hermod/**"/>
+			<fileset dir="${xdoclet.temp.dir}/hermod" includes="META-INF/**"/>
+		</jar>
+	</target>
+
+	<!-- Crea el War para desplegar en el Ear -->
+  	<target name="CreateEarWar" depends="CreateEjbJars,CreatePublicJars,CreateLibJars"
+  		description="Crea el archivo War para incluir dentro del archivo Ear final">
+
+  		<!-- Validar variables -->
+  		<fail unless="build.deploy.dir"/>
+  		<fail unless="base.dir"/>
+  		<fail unless="sir.war.name"/>
+  		<fail unless="src.dir"/>
+  		<fail unless="sir.jar.print.client.jar"/>
+  		<fail unless="sir.jar.modelo.jar"/>
+  		<fail unless="sir.jar.excepciones.jar"/>
+
+  		<!-- Se crea el War -->
+		<delete file="${build.deploy.dir}/${sir.war.name}" quiet="true"/>
+		<war warfile="${build.deploy.dir}/${sir.war.name}" webxml="${src.dir}/web.xml">
+			
+			<fileset dir="${base.dir}" includes="**/${sir.jar.print.client.jar}/**" />			
+			<fileset dir="${base.dir}" includes="**/${sir.jar.modelo.jar}/**" />
+			<fileset dir="${base.dir}" includes="**/${sir.jar.excepciones.jar}/**" />
+			<fileset dir="${base.dir}" includes="**/icono3.gif/**" />
+			<fileset dir="${base.dir}" includes="**/waterMark.gif/**" />
+			<fileset dir="${base.dir}" includes="**/org.auriga.core.modelo.jar/**" />
+			<fileset dir="${base.dir}" includes="**/informa.jar/**"/>
+			<fileset dir="${base.dir}" includes="**/xRegionTemplate.taglib.jar/**"/>			
+			<fileset dir="${base.dir}" includes="**/signed.**/**" />			
+   	  		<fileset dir="${base.dir}" includes="**/tagLibraries/**" />
+			<fileset dir="${base.dir}" includes="**/smartTemplates/**" />
+			<fileset dir="${base.dir}" includes="**/impresion/**" />
+			<fileset dir="${base.dir}" includes="**/dwr.xml/**" />			
+			<fileset dir="${base.dir}" includes="**/jspSeguro/**" />	
+			<fileset dir="${base.dir}" includes="**/jsp/**" excludes="**/Thumbs.db/**"/>			
+			<fileset dir="${base.dir}" includes="**/jspMBEANS/**" />
+			<fileset dir="${base.dir}" includes="**/jspSAS/**" />
+			<fileset dir="${base.dir}" includes="**.**" excludes="*.doc"/>
+			<webinf dir="${build.classes.dir}" includes="**/*-web.xml" />
+		</war>
+	</target>
+
+	<!-- Crea el Ear para desplegar en el contenedor J2EE -->
+  	<target name="CreateEar" depends="CreateEjbJars,CreateEarWar"
+  		description="Crea el archivo Ear listo para desplegar">
+
+  		<!-- Validar variables -->
+  		<fail unless="build.deploy.dir"/>
+  		<fail unless="lib.dir"/>
+  		<fail unless="src.dir"/>
+  		<fail unless="properties.dir"/>
+  		<fail unless="sir.build.lib"/>
+  		<fail unless="descriptors.dir"/>
+  		<fail unless="sir.jar.target"/>
+  		<fail unless="fenrir.ejb.bean.name"/>
+  		<fail unless="forseti.ejb.bean.name"/>
+  		<fail unless="hermod.ejb.bean.name"/>
+  		<fail unless="sir.war.name"/>
+  		<fail unless="sir.ear.name"/>
+  		<fail unless="sir.jar.print.common.jar"/>
+  		<fail unless="sir.jar.modelo.enhanced.jar"/>
+  		<fail unless="sir.jar.modelo.jar"/>
+
+  		<!-- Se crean los directorios necesarios -->
+		<mkdir dir="${build.deploy.dir}/${lib.dir}"/>
+		<mkdir dir="${build.deploy.dir}/META-INF"/>
+
+		<!-- Se copian los descriptores de aplicacion -->
+  		<copy todir="${build.deploy.dir}/META-INF">
+  			<fileset dir="${descriptors.dir}" includes="*.xml,*.MF"/>
+  		</copy>
+
+  		<!-- Se copian las librerias que correspondan -->
+		<copy todir="${build.deploy.dir}/${lib.dir}">
+			<fileset dir="${sir.build.lib}" includes="${auriga.match}"/>		
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.core.jar}"/>
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.ejb.jar}"/>
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.print.jar}"/>
+			<!--fileset dir="${jar.temp.dir}" includes="${sir.jar.mapas.jar}"/-->
+			<fileset dir="${sir.build.lib}" includes="${castor.match}"/>
+    	</copy>
+
+    	<!-- Se cambia el nombre extenso de las librerias -->
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.print.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.print.shortname.jar}"/>
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.core.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.core.shortname.jar}"/>
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.ejb.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.ejb.shortname.jar}"/>
+    	<!--move file="${build.deploy.dir}/${lib.dir}/${sir.jar.mapas.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.mapas.shortname.jar}"/-->
+    	<move todir="${build.deploy.dir}/${lib.dir}">
+    		<fileset dir="${build.deploy.dir}/${lib.dir}" includes="auriga*.jar"/>
+    		<mapper type="merge" to="${auriga.shortname.jar}"/>
+    	</move>
+    	<move todir="${build.deploy.dir}/${lib.dir}">
+    		<fileset dir="${build.deploy.dir}/${lib.dir}" includes="castor*.jar"/>
+    		<mapper type="merge" to="${castor.shortname.jar}"/>
+    	</move>
+
+		<!-- Modifica el archivo de deploy application.xml para que contenga los valores apropiados -->
+		<replace file="${build.deploy.dir}/META-INF/application.xml">
+			<replacefilter token="APPLICATION_NAME" value="SNR" />
+			<replacefilter token="WAR_NAME" value="${sir.war.name}" />
+			<replacefilter token="JAR_NAME_FENRIR" value="${fenrir.ejb.jar}"/>
+			<replacefilter token="JAR_NAME_FORSETI" value="${forseti.ejb.jar}"/>
+			<replacefilter token="JAR_NAME_HERMOD" value="${hermod.ejb.jar}"/>
+		</replace>
+
+		<!-- Modifica el archivo de deploy jboss-app.xml para que contenga los valores apropiados -->
+		<replace file="${build.deploy.dir}/META-INF/jboss-app.xml">
+			<replacefilter token="APPLICATION_NAME" value="SNR" />
+			<replacefilter token="EAR_NAME" value="${sir.ear.name}" />
+		</replace>
+
+		<!-- Genera el archivo Ear -->
+		<ear destfile="${build.deploy.dir}/${sir.ear.name}" appxml="${build.deploy.dir}/META-INF/application.xml">
+	  		<fileset dir="${build.deploy.dir}" includes="*.jar,*.war" />
+	  		<fileset dir="${build.deploy.dir}" includes="${lib.dir}/*.jar" />
+	  		<metainf dir="${build.deploy.dir}/META-INF" includes="*.xml,*.MF" />
+		</ear>
+
+		<!-- Se copian las librerias que correspondan -->
+		<delete dir="${build.deploy.dir}/${lib.dir}" quiet="true"/>
+		<mkdir dir="${build.deploy.dir}/${lib.dir}"/>
+		<copy todir="${build.deploy.dir}/${lib.dir}">
+			<fileset dir="${src.dir}" includes="*.license"/>
+			<fileset dir="${sir.build.lib}" includes="*.jar"
+				excludes="${sir.jar.print.common.jar},${sir.jar.modelo.enhanced.jar},
+					${sir.jar.modelo.jar},${sir.jar.core.jar},${sir.jar.ejb.jar},
+					${auriga.match},${castor.match},*taglib*.jar"/>
+    	</copy>
+
+		<!-- Elimina todos los archivos temporales generados durante el proceso -->
+		<delete quiet="true">
+			<fileset dir="${build.deploy.dir}" includes="*.jar"/>
+		</delete>
+		<delete file="${build.deploy.dir}/${sir.war.name}" quiet="true"/>
+		<delete dir="${build.deploy.dir}/META-INF" quiet="true"/>
+		<delete dir="${xdoclet.temp.dir}" quiet="true"/>
+		<delete dir="${jar.temp.dir}" quiet="true"/>
+	</target>
+	
+  	<target name="CreateMapasJAR" depends="CreateEjbJars,CreateEarWar"
+  		description="Crea el archivo JAR con los properties">
+
+  		<!-- Validar variables -->
+  		<fail unless="build.deploy.dir"/>
+  		<fail unless="lib.dir"/>
+  		<fail unless="src.dir"/>
+  		<fail unless="properties.dir"/>
+  		<fail unless="sir.build.lib"/>
+  		<fail unless="descriptors.dir"/>
+  		<fail unless="sir.jar.target"/>
+  		<fail unless="fenrir.ejb.bean.name"/>
+  		<fail unless="forseti.ejb.bean.name"/>
+  		<fail unless="hermod.ejb.bean.name"/>
+  		<fail unless="sir.war.name"/>
+  		<fail unless="sir.ear.name"/>
+  		<fail unless="sir.jar.print.common.jar"/>
+  		<fail unless="sir.jar.modelo.enhanced.jar"/>
+  		<fail unless="sir.jar.modelo.jar"/>
+
+  		<!-- Se crean los directorios necesarios -->
+		<mkdir dir="${build.deploy.dir}/${lib.dir}"/>
+		<mkdir dir="${build.deploy.dir}/META-INF"/>
+
+		<!-- Se copian los descriptores de aplicacion -->
+  		<copy todir="${build.deploy.dir}/META-INF">
+  			<fileset dir="${descriptors.dir}" includes="*.xml,*.MF"/>
+  		</copy>
+
+  		<!-- Se copian las librerias que correspondan -->
+		<copy todir="${build.deploy.dir}/${lib.dir}">
+			<!--
+			<fileset dir="${sir.build.lib}" includes="${auriga.match}"/>
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.core.jar}"/>
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.ejb.jar}"/>
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.print.jar}"/>
+			<fileset dir="${sir.build.lib}" includes="${castor.match}"/>
+			-->					
+			<fileset dir="${jar.temp.dir}" includes="${sir.jar.mapas.jar}"/>			
+    	</copy>
+
+    	<!-- Se cambia el nombre extenso de las librerias -->
+  		<!--
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.print.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.print.shortname.jar}"/>
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.core.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.core.shortname.jar}"/>
+    	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.ejb.jar}"
+    		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.ejb.shortname.jar}"/>
+    	<move todir="${build.deploy.dir}/${lib.dir}">
+    		<fileset dir="${build.deploy.dir}/${lib.dir}" includes="auriga*.jar"/>
+    		<mapper type="merge" to="${auriga.shortname.jar}"/>
+    	</move>
+    	<move todir="${build.deploy.dir}/${lib.dir}">
+    		<fileset dir="${build.deploy.dir}/${lib.dir}" includes="castor*.jar"/>
+    		<mapper type="merge" to="${castor.shortname.jar}"/>
+    	</move>
+  		-->
+        	<move file="${build.deploy.dir}/${lib.dir}/${sir.jar.mapas.jar}"
+        		tofile="${build.deploy.dir}/${lib.dir}/${sir.jar.mapas.shortname.jar}"/>
+  		
+
+		<!-- Modifica el archivo de deploy application.xml para que contenga los valores apropiados -->
+		<!--
+  		<replace file="${build.deploy.dir}/META-INF/application.xml">
+			<replacefilter token="APPLICATION_NAME" value="SNR" />
+			<replacefilter token="WAR_NAME" value="${sir.war.name}" />
+			<replacefilter token="JAR_NAME_FENRIR" value="${fenrir.ejb.jar}"/>
+			<replacefilter token="JAR_NAME_FORSETI" value="${forseti.ejb.jar}"/>
+			<replacefilter token="JAR_NAME_HERMOD" value="${hermod.ejb.jar}"/>
+		</replace>
+		-->
+
+		<!-- Modifica el archivo de deploy jboss-app.xml para que contenga los valores apropiados -->
+		<!--
+  		<replace file="${build.deploy.dir}/META-INF/jboss-app.xml">
+			<replacefilter token="APPLICATION_NAME" value="SNR" />
+			<replacefilter token="EAR_NAME" value="${sir.ear.name}" />
+		</replace>
+		-->
+
+		<!-- Genera el archivo Ear -->
+		<!--
+  		<ear destfile="${build.deploy.dir}/${sir.ear.name}" appxml="${build.deploy.dir}/META-INF/application.xml">
+	  		<fileset dir="${build.deploy.dir}" includes="*.jar,*.war" />
+	  		<fileset dir="${build.deploy.dir}" includes="${lib.dir}/*.jar" />
+	  		<metainf dir="${build.deploy.dir}/META-INF" includes="*.xml,*.MF" />
+		</ear>
+		-->
+
+		<!-- Se copian las librerias que correspondan -->
+		<!--
+  		<delete dir="${build.deploy.dir}/${lib.dir}" quiet="true"/>
+		<mkdir dir="${build.deploy.dir}/${lib.dir}"/>
+		<copy todir="${build.deploy.dir}/${lib.dir}">
+			<fileset dir="${src.dir}" includes="*.license"/>
+			<fileset dir="${sir.build.lib}" includes="*.jar"
+				excludes="${sir.jar.print.common.jar},${sir.jar.modelo.enhanced.jar},${sir.jar.modelo.jar},${sir.jar.core.jar},${sir.jar.ejb.jar},${auriga.match},${castor.match},*taglib*.jar"/>
+    	</copy>
+    	-->
+
+		<!-- Elimina todos los archivos temporales generados durante el proceso -->
+		<delete quiet="true">
+			<fileset dir="${build.deploy.dir}" includes="*.jar"/>
+		</delete>
+		<delete file="${build.deploy.dir}/${sir.war.name}" quiet="true"/>
+		<delete dir="${build.deploy.dir}/META-INF" quiet="true"/>
+		<delete dir="${xdoclet.temp.dir}" quiet="true"/>
+		<delete dir="${jar.temp.dir}" quiet="true"/>
+	</target>
+	
+	<!-- JBOSS_HOME DEBE ESTAR CONFIGURADO ANTES DE EJECUTAR ESTOS SCRIPTS -->
+
+  	<target name="DeployEarJboss" depends="CreateEar" description="Despliega el EAR generado sobre JBoss AS">
+  		<copy todir="${env.JBOSS_HOME}/server/${jboss.configuration}/deploy">
+  			<fileset dir="${build.deploy.dir}" includes="${sir.ear.name}"/>
+  		</copy>
+  	</target>
+	
+	<target name="DeployMapasJar" depends="CreateMapasJAR" description="Despliega el Archivo de Mapas generado sobre JBoss AS">
+	  		<copy todir="${env.JBOSS_HOME}/server/${jboss.configuration}/lib">
+	  			<fileset dir="${build.deploy.dir}/${lib.dir}" includes="${sir.jar.mapas.shortname.jar}"/>
+	  		</copy>
+	</target>
+
+  	<target name="DeployEarLibsJboss" depends="CreateEar" description="Copia el EAR y las librerias necesarias para el EAR en la carpeta de librerias de JBoss">
+  		<copy todir="${env.JBOSS_HOME}/server/${jboss.configuration}/deploy">
+  		  			<fileset dir="${build.deploy.dir}" includes="${sir.ear.name}"/>
+  		</copy>
+  		<copy todir="${env.JBOSS_HOME}/server/${jboss.configuration}/lib" overwrite="true">
+  			<fileset dir="${build.deploy.dir}/${lib.dir}" includes="*.*"/>
+  		</copy>
+  	</target>
+	
+	<target name="LaunchJbossWindows">
+	  <exec executable="cmd">
+	  	<arg value="/c"/>
+	  	<arg value="${env.JBOSS_HOME}/bin/run.bat"/>
+	  </exec>
+	</target>
+	
+	<target name="ShutdownJbossWindows">
+		  <exec executable="cmd">
+		  	<arg value="/c"/>
+		  	<arg value="${env.JBOSS_HOME}/bin/shutdown.bat"/>
+		  	<arg value="-S"/>
+		  </exec>
+	</target>
+	
+	<target name="LaunchJbossLinux">
+		<exec executable="/bin/sh">
+		  	<arg value="-c"/>
+		  	<arg value="${env.JBOSS_HOME}/bin/run.sh"/>
+		</exec>
+	</target>
+	
+	<target name="ShutdownJbossLinux">
+		<exec executable="/bin/sh">
+			<arg value="-c"/>
+			<arg value="${env.JBOSS_HOME}/bin/shutdown.sh"/>
+			<arg value="-S"/>
+		</exec>
+	</target>
+</project>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orion-web-app>
+	<!--
+	<web-app-class-loader search-local-classes-first="true" />
+	-->
+</orion-web-app>

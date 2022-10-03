@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<org.auriga.smart.mapas.MapaNegocio>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnDigitacionMasivaOptions</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.AnCorr_DigitacionMasivaOptions</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.Evn_CorrSimpleMain_CopiaSalvedadOptions</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.AnCorr_CopiaSalvedadOptions</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.Evn_CorrSimpleMain_VerAlertasOptions</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.AnCorr_VerAlertasOptions</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnSeguridad</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANSeguridad</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnTurno</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANTurno</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnLiquidacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANLiquidacion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnPago</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANPago</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnSistema</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANSistema</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.consulta.EvnConsulta</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.consulta.ANConsulta</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnConsulta</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANConsulta</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnLocacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANLocacion</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnOficinas</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANOficinas</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.certificado.EvnCertificado</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.certificado.ANCertificado</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnTurnoManualCertificado</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANTurnoManualCertificado</accion-negocio>
+ </mapping>
+
+ <mapping>
+ 	<evento>gov.sir.core.eventos.administracion.EvnTurnoManualCertificadoPago</evento>
+ 	<accion-negocio>gov.sir.core.negocio.acciones.administracion.ANTurnoManualCertificadoPago</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.certificadosmasivos.EvnCertificadoMasivo</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.certificadosmasivos.ANCertificadoMasivo</accion-negocio>
+ </mapping>
+ 
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnCertificadosAsociados</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANCertificadosAsociados</accion-negocio>
+ </mapping> 
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnEdicion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANEdicion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnRevision</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANRevision</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnActuacionAdministrativa</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANActuacionAdministrativa</accion-negocio>
+ </mapping>
+
+
+ <mapping>
+    <evento>gov.sir.core.eventos.repartonotarial.EvnRepartoNotarial</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.repartonotarial.ANRepartoNotarial</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.restitucionreparto.EvnRestitucionReparto</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.restitucionreparto.ANRestitucionReparto</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.pagomayorvalor.EvnPagoMayorValor</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.pagomayorvalor.ANPagoMayorValor</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANFolio</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnLiquidacionRegistro</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANLiquidacionRegistro</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnTurnoManualRegistro</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANTurnoManualRegistro</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnNotas</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANNotas</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnConfrontacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANConfrontacion</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnTestamentos</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANTestamentos</accion-negocio>
+ </mapping> 
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnRecursosRevocatorias</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANRecursosRevocatorias</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnReasignacionTurnos</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANReasignacionTurnos</accion-negocio>
+ </mapping> 
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnMigracionIncremental</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANMigracionIncremental</accion-negocio>
+ </mapping> 
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnReportes</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnReportes</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnListaReportes</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnReportes</accion-negocio>
+ </mapping>
+
+<!-- evn-reproduccion sellos -->
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnCalificacionReproduccionSellos</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANCalificacion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnCalificacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANCalificacion</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnCrearFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANCrearFolio</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnDigitacionMasiva</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANDigitacionMasiva</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnSegregacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANSegregacion</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnEnglobe</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANEnglobe</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnCopiaAnotacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANCopiaAnotacion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnMesaControl</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANMesaControl</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnAdministracionHermod</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANAdministracionHermod</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnConsultasReparto</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANConsultasReparto</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnAdministracionForseti</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANAdministracionForseti</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnCrearFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANCrearFolio</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.administracion.Evn_AdminCrearFolioSaveInfo</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANCrearFolio</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnCrearFolioOficio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANCrearFolioOficio</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.administracion.Evn_AdminCrearFolioSaveInfoOficio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANCrearFolioOficio</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnAdministracionFenrir</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnAdministracionFenrir</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnAdministracionCiudadano</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnAdministracionCiudadano</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnTrasladoTurno</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnTrasladoTurno</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnImprimirFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANImprimirFolio</accion-negocio>
+ </mapping>
+ 
+  <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnImprimirRepartoNotarial</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANImprimirRepartoNotarial</accion-negocio>
+ </mapping>
+
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnReparto</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANReparto</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.devolucion.EvnDevolucion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.devolucion.ANDevolucion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.certificado.EvnValidacionMatricula</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.certificado.ANCertificado</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.certificado.EvnCambioMatricula</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.certificado.ANCertificado</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnContrasena</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANContrasena</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnCiudadano</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANCiudadano</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnRevision</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANRevision</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnAprobarAjuste</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANAprobarAjuste</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnTramiteSuspension</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANTramiteSuspension</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnPaginadorAnotaciones</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANPaginadorAnotaciones</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnNextOrdenAnotacion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANNextOrdenAnotacion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnImpresorasCirculo</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANImpresion</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnConsultaFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANConsultaFolio</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.registro.EvnConsultaFolio</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.registro.ANConsultarFolio</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnCorreccion</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANCorreccion</accion-negocio>
+ </mapping>
+
+  <mapping>
+    <evento>gov.sir.core.eventos.antiguosistema.EvnAntiguoSistema</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.antiguosistema.ANAntiguoSistema</accion-negocio>
+ </mapping>
+  <!-- save-info-temp -->
+  <mapping>
+    <evento>gov.sir.core.eventos.antiguosistema.Evn_AntigSistHojaRutaSaveInfo</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.antiguosistema.ANAntiguoSistema</accion-negocio>
+ </mapping>
+
+ <!-- correcciones.folio/padres-hijos -->
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnCorreccionFolioPadresHijos</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANCorreccion</accion-negocio>
+ </mapping>
+
+ <!-- ========================== SOLICITUD FOTOCOPIAS MAPPING ===============================  -->
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnVerificarDocumentosFotocopia</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANFotocopia</accion-negocio>
+  </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnFotocopiaCrear</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANFotocopia</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnFotocopia</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANFotocopia</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnPagoFotocopia</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANPagoFotocopia</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnPagoFotocopiaZeroValue</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANPagoFotocopia</accion-negocio>
+ </mapping>
+  <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnLiquidarFotocopiaNegar</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANFotocopia</accion-negocio>
+ </mapping>
+ <mapping>
+    <evento>gov.sir.core.eventos.fotocopia.EvnEntregaFotocopia</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.fotocopia.ANEntregaFotocopia</accion-negocio>
+ </mapping>
+ <!-- =============================================================================================================  -->
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnAdministracionFotocopiasLiquidCancelVencimiento</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.AnAdministracionFotocopiasLiquidCancelVencimiento</accion-negocio>
+ </mapping>
+
+ <!-- =============================================================================================================  -->
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnMsgEdicionCiudadanoSobreTodosFolios</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.AnEdicionCiudadanoSobreTodosFolios</accion-negocio>
+ </mapping>
+
+ <!-- block -->
+ <mapping>
+ 	<evento>gov.sir.core.eventos.administracion.EvnRelacion</evento>
+ 	<accion-negocio>gov.sir.core.negocio.acciones.administracion.ANRelacion</accion-negocio>
+ </mapping>
+ <!-- block -->
+ <mapping>
+ 	<evento>gov.sir.core.eventos.correccion.EvnMsgMesaControl</evento>
+ 	<accion-negocio>gov.sir.core.negocio.acciones.correccion.AnCorr_MesaControl</accion-negocio>
+ </mapping>
+ 
+ <!-- ========================================================================================================== -->
+ <mapping>
+ 	<evento>gov.sir.core.eventos.migracionincremental.EvnMigracionIncremental</evento>
+ 	<accion-negocio>gov.sir.core.negocio.acciones.migracionincremental.ANMigracionIncremental</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnHorarioNotarial</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANHorarioNotarial</accion-negocio>
+ </mapping>
+ 
+ <mapping>
+    <evento>gov.sir.core.eventos.comun.EvnReportesJasper</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.comun.ANReportesJasper</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.administracion.EvnGestionDocumental</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.administracion.ANGestionDocumental</accion-negocio>
+ </mapping>
+
+ <mapping>
+    <evento>gov.sir.core.eventos.correccion.EvnModificarTestamento</evento>
+    <accion-negocio>gov.sir.core.negocio.acciones.correccion.ANCorreccion</accion-negocio>
+ </mapping>
+
+</org.auriga.smart.mapas.MapaNegocio>

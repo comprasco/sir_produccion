@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1'?>
+
+<jnlp spec="1.0+" codebase="http://impresionsir.supernotariado.gov.co:7778/SNR/impresion/"	>
+
+    <information>
+
+        <title>Aplicativo de Impresion de Circulo</title>
+
+        <vendor>EMTEL</vendor>
+
+        <homepage href="CARGAR_JNLP_IMPRESION.jsp" />
+
+        <description>Aplicacion para impresion en circulo</description>
+
+    </information>
+
+    <security>
+
+        <all-permissions />
+
+    </security>
+
+    <resources>
+
+        <j2se version="1.4+" initial-heap-size="128m" max-heap-size="640m"/>		
+
+		
+
+        <jar href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.gov.sir.print.client.jar"
+
+                     main="true" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.org.auriga.core.modelo.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.gov.sir.core.negocio.modelo.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.gov.sir.core.negocio.excepciones.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.PDFBox-0.7.3.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.FontBox-0.1.0-dev.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.iText.jar"
+
+            main="false" download="eager" />
+
+        <jar
+
+            href="http://impresionsir.supernotariado.gov.co:7778/SNR/publicJars/signed.log4j-1.2.8.jar"
+
+            main="false" download="eager" />
+
+    </resources>
+
+
+    <applet-desc documentBase="$$codebase" name="Impresion"
+
+                     main-class="gov.sir.print.client.plus.PrintJobsPlusApplet" 
+
+                     width="580" height="620"  >
+
+        <param name="UID" value="$$UID" />
+
+        <param name="REMOTE_HOST" value="http://impresionsir.supernotariado.gov.co" />
+
+        <param name="REMOTE_PORT" value="$$REMOTE_PORT" />
+
+        <param name="ID_USUARIO" value="$$ID_USUARIO" />		
+
+        <param name="LOCAL_PORT_LOW" value="3330" />
+
+        <param name="LOCAL_PORT_HIGH" value="3630" />
+
+    </applet-desc>
+
+
+</jnlp>

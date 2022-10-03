@@ -1,0 +1,23 @@
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+  <allow>
+    <create creator="new" javascript="AWLocacion">
+      <param name="class" value="gov.sir.core.web.acciones.comun.AWLocacion"/>
+	      <include method="cargarDepartamentos"/>
+    </create>
+    <create creator="new" javascript="AWOficinas">
+      <param name="class" value="gov.sir.core.web.acciones.comun.AWOficinas"/>
+	      <include method="cargarTiposOficinas"/>
+	      <include method="cargarOficinas"/>
+              <include method="cargarOficina"/>
+    </create>
+    <!-- No traer todas las clases del paquete modelo, traer las que se van necesitando -->
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.Departamento"/>
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.Municipio"/>
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.Vereda"/>
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.TipoOficina"/>
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.OficinaOrigen"/>
+    <convert converter="bean" match="gov.sir.core.negocio.modelo.util.ContenedorTiposyNumerosOficinas"/>
+  </allow>
+</dwr>

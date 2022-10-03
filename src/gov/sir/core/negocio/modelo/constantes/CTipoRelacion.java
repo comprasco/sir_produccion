@@ -1,0 +1,52 @@
+package gov.sir.core.negocio.modelo.constantes;
+
+public class CTipoRelacion {
+	
+	public static final String DOCUMENTOS_A_ANTIGUO_SISTEMA = "DOCUMENTOS_A_ANTIGUO_SISTEMA";
+	public static final String DOCUMENTOS_A_CONFRONTACION = "DOCUMENTOS_A_CONFRONTACION";
+	public static final String DOCUMENTOS_A_TESTAMENTO = "DOCUMENTOS_A_TESTAMENTO";
+	public static final String DOCUMENTOS_PARA_CUSTODIA_MAYOR_VALOR = "DOCUMENTOS_PARA_CUSTODIA_MAYOR_VALOR";
+	public static final String DOCUMENTOS_A_DESANOTACION = "DOCUMENTOS_A_DESANOTACION";
+	public static final String DOCUMENTOS_DESANOTADOS_PARA_ENTREGA = "DOCUMENTOS_DESANOTADOS_PARA_ENTREGA";
+	public static final String DOCUMENTOS_DEVUELTOS_PARA_FIRMA = "DOCUMENTOS_DEVUELTOS_PARA_FIRMA";
+	public static final String DOCUMENTOS_INSCRITOS_PARA_FIRMA = "DOCUMENTOS_INSCRITOS_PARA_FIRMA";
+	public static final String CERTIFICADO_PARA_ANTIGUO_SISTEMA = "CERTIFICADO_PARA_ANTIGUO_SISTEMA";
+	public static final String CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_DEVUELTO = "CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_DEVUELTO";
+	public static final String CERTIFICADO_ANTIGUO_SISTEMA_DE_ENTREGA_DEVUELTO = "CERTIFICADO_ANTIGUO_SISTEMA_DE_ENTREGA_DEVUELTO";
+	public static final String CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_EXPEDIDO = "CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_EXPEDIDO";
+	public static final String CERTIFICADO_ANTIGUO_SISTEMA_A_REPARTO = "CERTIFICADO_ANTIGUO_SISTEMA_A_REPARTO";
+	public static final String DOCUMENTOS_EMBARGO_INSCRITOS = "DOCUMENTOS_EMBARGO_INSCRITOS";
+	public static final String DOCUMENTOS_EMBARGO_DEVUELTOS = "DOCUMENTOS_EMBARGO_DEVUELTOS";
+	
+	public static final String ID_DOCUMENTOS_A_CONFRONTACION = "1";
+	public static final String ID_DOCUMENTOS_A_ANTIGUO_SISTEMA = "2";
+	public static final String ID_DOCUMENTOS_A_TESTAMENTO = "3";
+	public static final String ID_DOCUMENTOS_INSCRITOS_PARA_FIRMA = "4";
+	public static final String ID_DOCUMENTOS_DEVUELTOS_PARA_FIRMA = "5";
+	public static final String ID_DOCUMENTOS_PARA_CUSTODIA_MAYOR_VALOR = "6";
+	public static final String ID_DOCUMENTOS_A_DESANOTACION_INSCRITOS = "7";
+	public static final String ID_DOCUMENTOS_DESANOTADOS_PARA_ENTREGA = "8";
+	public static final String ID_CERTIFICADO_PARA_ANTIGUO_SISTEMA = "9";
+	public static final String ID_CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_DEVUELTO = "10";
+	public static final String ID_CERTIFICADO_ANTIGUO_SISTEMA_DE_ENTREGA_DEVUELTO = "20";
+	public static final String ID_CERTIFICADO_ANTIGUO_SISTEMA_A_ENTREGA_EXPEDIDO = "11";
+	public static final String ID_CERTIFICADO_ANTIGUO_SISTEMA_A_REPARTO = "12";
+	public static final String ID_REPARTO_A_CALIFICACION = "15";
+	public static final String ID_DOCUMENTOS_A_DESANOTACION_DEVUELTOS = "16";
+	public static final String ID_CORRECCIONES_DESANOTADAS = "17";
+	public static final String ID_CORRECCIONES_DEVUELTAS_AL_PUBLICO = "18";
+	public static final String ID_SOLICITUDES_DE_CORRECCIONES = "19";
+	public static final String ID_DOCUMENTOS_EMBARGO_INSCRITOS = "21";
+	public static final String ID_DOCUMENTOS_EMBARGO_DEVUELTOS = "22";
+	public static final String ID_DOCUMENTOS_CON_INSCRIPCION_PARCIAL_PARA_FIRMA="23";
+	public static final String ID_DOCUMENTOS_A_DESANOTACION_INSCRITOS_PARCIALMENTE = "24";
+         /**
+           * @author      :   Carlos Torres
+           * @Caso Mantis :   11604: Acta - Requerimiento No 004_589_Funcionario_Fase_ Entregado
+           **/
+        public static final String ID_RELACION_DE_TURNOS_DESANOTADOS_REGISTRO = "25";
+        public static final String ID_RELACION_DE_TURNOS_DESANOTADOS_CORRECCION = "26";
+        public static final String ID_RELACION_DE_TURNOS_DESANOTADOS_CORRESPONDIENCIA = "27";
+        public static final String ID_RELACION_DE_DOCUMENTOS_DEVUELTOS_A_NOTIFICAR = "28";
+	
+}

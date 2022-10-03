@@ -1,0 +1,12 @@
+[PropertyInfo]
+labels,String[],false,false, , ,false,<default>
+numCols,int,false,false, , ,true,<default>
+numRows,int,false,false, , ,true,<default>
+renderers,gov.sir.core.web.helpers.fotocopia.drawablecomponents.generators.DrawableComponent[],false,false, , ,true,<default>
+renderMode,int,false,false, , ,true,<default>
+values,java.util.List,false,false, , ,true,<default>
+[IconNames]
+
+
+
+

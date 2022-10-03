@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.auriga.smart.mapas.MapaServicios>
+  <servicio>
+    <nombre>org.auriga.sas.SAS</nombre>
+    <interfaz>org.auriga.sas.interfaz.SASInterface</interfaz>
+    <delegate>
+      <clase>org.auriga.smart.servicio.delegates.Local</clase>
+      <parametro>
+        <nombre>clase</nombre>
+        <valor>org.auriga.sas.SAS</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+
+  <!-- Delegado Local -->
+  <servicio>
+    <nombre>org.auriga.smart.negocio.ProcesadorEventosNegocio</nombre>
+    <interfaz>org.auriga.smart.negocio.interfaz.ProcesadorEventos</interfaz>
+    <delegate>
+      <clase>org.auriga.smart.servicio.delegates.Local</clase>
+      <parametro>
+        <nombre>clase</nombre>
+        <valor>org.auriga.smart.negocio.ProcesadorEventosNegocio</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+
+  <!-- Delegado EJB -->
+  <!--
+  <servicio>
+    <nombre>org.auriga.smart.negocio.ProcesadorEventosNegocio</nombre>
+    <interfaz>org.auriga.smart.negocio.interfaz.ProcesadorEventos</interfaz>
+    <delegate>
+      <clase>gov.sir.ejb.delegate.EJBDelegate</clase>
+
+      <parametro>
+        <nombre>interface</nombre>
+        <valor>gov.sir.ejb.interfaz.ProcesadorEventoNegocioEJBService</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>jndi</nombre>
+        <valor>ejb/ProcesadorEventosNegocio</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>home</nombre>
+        <valor>gov.sir.ejb.ProcesadorEventosNegocioInterfaceHome</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>remote</nombre>
+        <valor>gov.sir.ejb.ProcesadorEventosNegocioInterfaceRemote</valor>
+      </parametro>
+
+    </delegate>
+  </servicio>
+  -->
+
+  <!-- Delegado Local -->
+  <!--
+  <servicio>
+    <nombre>gov.sir.fenrir</nombre>
+    <interfaz>gov.sir.fenrir.intefaz.FenrirServiceInterface</interfaz>
+    <delegate>
+      <clase>org.auriga.smart.servicio.delegates.Local</clase>
+      <parametro>
+        <nombre>clase</nombre>
+        <valor>gov.sir.fenrir.FenrirService</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+  -->
+
+  <!-- Delegado EJB -->
+  <servicio>
+    <nombre>gov.sir.fenrir</nombre>
+    <interfaz>gov.sir.fenrir.intefaz.FenrirServiceInterface</interfaz>
+    <delegate>
+      <clase>gov.sir.ejb.delegate.EJBDelegate</clase>
+
+      <parametro>
+        <nombre>interface</nombre>
+        <valor>gov.sir.fenrir.ejb.interfaz.FenrirServiceEJBInterface</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>jndi</nombre>
+        <valor>java:comp/env/ejb/FenrirServiceEJBLocal</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>home</nombre>
+        <valor>gov.sir.fenrir.ejb.FenrirServiceEJBInterfaceLocalHome</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>remote</nombre>
+        <valor>gov.sir.fenrir.ejb.FenrirServiceEJBInterfaceLocal</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+
+  <!-- Delegado Local -->
+  <!--
+  <servicio>
+    <nombre>gov.sir.hermod</nombre>
+    <interfaz>gov.sir.hermod.interfaz.HermodServiceInterface</interfaz>
+    <delegate>
+      <clase>org.auriga.smart.servicio.delegates.Local</clase>
+      <parametro>
+        <nombre>clase</nombre>
+        <valor>gov.sir.hermod.HermodService</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+  -->
+
+  <!-- Delegado EJB -->
+  <servicio>
+    <nombre>gov.sir.hermod</nombre>
+    <interfaz>gov.sir.hermod.interfaz.HermodServiceInterface</interfaz>
+    <delegate>
+      <clase>gov.sir.ejb.delegate.EJBDelegate</clase>
+
+	  <parametro>
+        <nombre>interface</nombre>
+        <valor>gov.sir.hermod.ejb.interfaz.HermodServiceEJBInterface</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>jndi</nombre>
+        <valor>java:comp/env/ejb/HermodServiceEJBLocal</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>home</nombre>
+        <valor>gov.sir.hermod.ejb.HermodServiceEJBInterfaceLocalHome</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>remote</nombre>
+        <valor>gov.sir.hermod.ejb.HermodServiceEJBInterfaceLocal</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+
+  <!-- Delegado Local -->
+  <!--
+  <servicio>
+    <nombre>gov.sir.forseti</nombre>
+    <interfaz>gov.sir.forseti.interfaz.ForsetiServiceInterface</interfaz>
+    <delegate>
+      <clase>org.auriga.smart.servicio.delegates.Local</clase>
+      <parametro>
+        <nombre>clase</nombre>
+        <valor>gov.sir.forseti.ForsetiService</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+  -->
+
+  <!-- Delegado EJB -->
+  <servicio>
+    <nombre>gov.sir.forseti</nombre>
+    <interfaz>gov.sir.forseti.interfaz.ForsetiServiceInterface</interfaz>
+    <delegate>
+      <clase>gov.sir.ejb.delegate.EJBDelegate</clase>
+
+      <parametro>
+        <nombre>interface</nombre>
+        <valor>gov.sir.forseti.ejb.interfaz.ForsetiServiceEJBInterface</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>jndi</nombre>
+        <valor>java:comp/env/ejb/ForsetiServiceEJBLocal</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>home</nombre>
+        <valor>gov.sir.forseti.ejb.ForsetiServiceEJBInterfaceLocalHome</valor>
+      </parametro>
+
+      <parametro>
+        <nombre>remote</nombre>
+        <valor>gov.sir.forseti.ejb.ForsetiServiceEJBInterfaceLocal</valor>
+      </parametro>
+    </delegate>
+  </servicio>
+
+ <servicio>
+	<nombre>gov.sir.print</nombre>
+	<interfaz>gov.sir.print.interfaz.PrintJobsInterface</interfaz>
+	<delegate>
+		<clase>org.auriga.smart.servicio.delegates.Local</clase>
+		<parametro>
+        <nombre>clase</nombre>
+        <valor>gov.sir.print.server.PrintJobs</valor>
+      </parametro>
+	</delegate>
+  </servicio>
+</org.auriga.smart.mapas.MapaServicios>

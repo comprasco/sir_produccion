@@ -1,0 +1,16 @@
+#JDO Genie ENTERPRISE License
+#Mon Aug 02 16:37:15 EDT 2004
+reference.no=541675273-7779
+developer.seats=1
+signature=c1d08ag15dkgcf0mjkpau21a97up5h6akjr4sadg0gk5a8037emvrvpu5caan3k9ltoqhq7pn0v
+jca.adapter=true
+databases=all
+e-mail=dcantor@i-siglo21.com
+cache.listener=true
+company=INFORMATICA SIGLO 21 LTDA.
+date.created=02 Aug 2004
+type=ENTERPRISE
+multiple.datastores=true
+licensee=Diego Hernando Cantor Rivera
+support.expiration=02 Aug 2005
+expiration=never

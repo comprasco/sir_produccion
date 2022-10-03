@@ -1,0 +1,258 @@
+annotation.processing.enabled=true
+annotation.processing.enabled.in.editor=true
+annotation.processing.processors.list=
+annotation.processing.run.all.processors=true
+annotation.processing.source.output=${build.generated.sources.dir}/ap-source-output
+build.classes.dir=${build.web.dir}/WEB-INF/classes
+build.classes.excludes=**/*.java,**/*.form
+build.dir=build
+build.generated.dir=${build.dir}/generated
+build.generated.sources.dir=${build.dir}/generated-sources
+build.test.classes.dir=${build.dir}/test/classes
+build.test.results.dir=${build.dir}/test/results
+build.web.dir=${build.dir}/web
+build.web.excludes=${build.classes.excludes}
+client.urlPart=
+compile.jsps=false
+conf.dir=conf
+debug.classpath=${build.classes.dir}:${javac.classpath}
+debug.test.classpath=\
+    ${run.test.classpath}
+display.browser=true
+dist.dir=dist
+dist.ear.war=${dist.dir}/${war.ear.name}
+dist.javadoc.dir=${dist.dir}/javadoc
+dist.war=${dist.dir}/${war.name}
+endorsed.classpath=
+excludes=
+file.reference.auriga.jar=C:\\WORK\\LIB\\auriga.jar
+file.reference.auriga.jar-1=D:\\WORK\\LIB\\auriga.jar
+file.reference.castor.jar=C:\\WORK\\LIB\\castor.jar
+file.reference.castor.jar-1=D:\\WORK\\LIB\\castor.jar
+file.reference.com.is21.cifrar.jar=C:\\WORK\\LIB\\com.is21.cifrar.jar
+file.reference.com.is21.cifrar.jar-1=D:\\WORK\\LIB\\com.is21.cifrar.jar
+file.reference.commons-digester-1.7.jar=C:\\WORK\\LIB\\commons-digester-1.7.jar
+file.reference.commons-digester-1.7.jar-1=D:\\WORK\\LIB\\commons-digester-1.7.jar
+file.reference.commons-fileupload.jar=C:\\WORK\\LIB\\commons-fileupload.jar
+file.reference.commons-fileupload.jar-1=D:\\WORK\\LIB\\commons-fileupload.jar
+file.reference.commons-jxpath-1.2.jar=C:\\WORK\\LIB\\commons-jxpath-1.2.jar
+file.reference.commons-jxpath-1.2.jar-1=D:\\WORK\\LIB\\commons-jxpath-1.2.jar
+file.reference.commons-logging-api.jar=C:\\WORK\\LIB\\commons-logging-api.jar
+file.reference.commons-logging-api.jar-1=D:\\WORK\\LIB\\commons-logging-api.jar
+file.reference.commons-logging.jar=C:\\WORK\\LIB\\commons-logging.jar
+file.reference.commons-logging.jar-1=D:\\WORK\\LIB\\commons-logging.jar
+file.reference.commons-math-1.0.jar=C:\\WORK\\LIB\\commons-math-1.0.jar
+file.reference.commons-math-1.0.jar-1=D:\\WORK\\LIB\\commons-math-1.0.jar
+file.reference.dwr.jar=C:\\WORK\\LIB\\dwr.jar
+file.reference.dwr.jar-1=D:\\WORK\\LIB\\dwr.jar
+file.reference.FontBox-0.1.0-dev.jar=C:\\WORK\\LIB\\FontBox-0.1.0-dev.jar
+file.reference.FontBox-0.1.0-dev.jar-1=D:\\WORK\\LIB\\FontBox-0.1.0-dev.jar
+file.reference.gestiondocumental.jar=C:\\WORK\\LIB\\gestiondocumental.jar
+file.reference.gestiondocumental.jar-1=D:\\WORK\\LIB\\gestiondocumental.jar
+file.reference.informa.jar=C:\\WORK\\LIB\\informa.jar
+file.reference.informa.jar-1=D:\\WORK\\LIB\\informa.jar
+file.reference.is21.paginador.jar=C:\\WORK\\LIB\\is21.paginador.jar
+file.reference.is21.paginador.jar-1=D:\\WORK\\LIB\\is21.paginador.jar
+file.reference.iText.jar=C:\\WORK\\LIB\\iText.jar
+file.reference.iText.jar-1=D:\\WORK\\LIB\\iText.jar
+file.reference.iTextXML.jar=C:\\WORK\\LIB\\iTextXML.jar
+file.reference.iTextXML.jar-1=D:\\WORK\\LIB\\iTextXML.jar
+file.reference.jasperreports-3.0.0.jar=C:\\WORK\\LIB\\jasperreports-3.0.0.jar
+file.reference.jasperreports-3.0.0.jar-1=D:\\WORK\\LIB\\jasperreports-3.0.0.jar
+file.reference.jasperreports-extensions-1.3.1.jar=C:\\WORK\\LIB\\jasperreports-extensions-1.3.1.jar
+file.reference.jasperreports-extensions-1.3.1.jar-1=D:\\WORK\\LIB\\jasperreports-extensions-1.3.1.jar
+file.reference.jboss-j2ee.jar=C:\\WORK\\LIB\\jboss-j2ee.jar
+file.reference.jboss-j2ee.jar-1=D:\\WORK\\LIB\\jboss-j2ee.jar
+file.reference.jcommon-1.0.0.jar=C:\\WORK\\LIB\\jcommon-1.0.0.jar
+file.reference.jcommon-1.0.0.jar-1=D:\\WORK\\LIB\\jcommon-1.0.0.jar
+file.reference.jdo.jar=C:\\WORK\\LIB\\jdo.jar
+file.reference.jdo.jar-1=D:\\WORK\\LIB\\jdo.jar
+file.reference.jdom.jar=C:\\WORK\\LIB\\jdom.jar
+file.reference.jdom.jar-1=D:\\WORK\\LIB\\jdom.jar
+file.reference.jfreechart-1.0.3.jar=C:\\WORK\\LIB\\jfreechart-1.0.3.jar
+file.reference.jfreechart-1.0.3.jar-1=D:\\WORK\\LIB\\jfreechart-1.0.3.jar
+file.reference.jmxri.jar=C:\\WORK\\LIB\\jmxri.jar
+file.reference.jmxri.jar-1=D:\\WORK\\LIB\\jmxri.jar
+file.reference.jmxtools.jar=C:\\WORK\\LIB\\jmxtools.jar
+file.reference.jmxtools.jar-1=D:\\WORK\\LIB\\jmxtools.jar
+file.reference.jnlp-servlet.jar=C:\\WORK\\LIB\\jnlp-servlet.jar
+file.reference.jnlp-servlet.jar-1=D:\\WORK\\LIB\\jnlp-servlet.jar
+file.reference.jnlp.jar=C:\\WORK\\LIB\\jnlp.jar
+file.reference.jnlp.jar-1=D:\\WORK\\LIB\\jnlp.jar
+file.reference.jta.jar=C:\\WORK\\LIB\\jta.jar
+file.reference.jta.jar-1=D:\\WORK\\LIB\\jta.jar
+file.reference.junit.jar=C:\\WORK\\LIB\\junit.jar
+file.reference.junit.jar-1=D:\\WORK\\LIB\\junit.jar
+file.reference.LIB-tomcat=C:\\WORK\\LIB\\tomcat
+file.reference.LIB-tomcat-1=D:\\WORK\\LIB\\tomcat
+file.reference.LIB-xdoclet-1.2.3=C:\\WORK\\LIB\\xdoclet-1.2.3
+file.reference.LIB-xdoclet-1.2.3-1=D:\\WORK\\LIB\\xdoclet-1.2.3
+file.reference.log4j-1.2.8.jar=C:\\WORK\\LIB\\log4j-1.2.8.jar
+file.reference.log4j-1.2.8.jar-1=D:\\WORK\\LIB\\log4j-1.2.8.jar
+file.reference.lucene.jar=C:\\WORK\\LIB\\lucene.jar
+file.reference.lucene.jar-1=D:\\WORK\\LIB\\lucene.jar
+file.reference.ojdbc14.jar=C:\\WORK\\LIB\\ojdbc14.jar
+file.reference.ojdbc14.jar-1=D:\\WORK\\LIB\\ojdbc14.jar
+file.reference.openaccess.jar=C:\\WORK\\LIB\\openaccess.jar
+file.reference.openaccess.jar-1=D:\\WORK\\LIB\\openaccess.jar
+file.reference.org.portal.modelo.jar=C:\\WORK\\LIB\\org.portal.modelo.jar
+file.reference.org.portal.modelo.jar-1=D:\\WORK\\LIB\\org.portal.modelo.jar
+file.reference.PDFBox-0.7.3.jar=C:\\WORK\\LIB\\PDFBox-0.7.3.jar
+file.reference.PDFBox-0.7.3.jar-1=D:\\WORK\\LIB\\PDFBox-0.7.3.jar
+file.reference.poi-3.0.1-FINAL-20070705.jar=C:\\WORK\\LIB\\poi-3.0.1-FINAL-20070705.jar
+file.reference.poi-3.0.1-FINAL-20070705.jar-1=D:\\WORK\\LIB\\poi-3.0.1-FINAL-20070705.jar
+file.reference.SIR-APP-src=src
+file.reference.spring-mock.jar=C:\\WORK\\LIB\\spring-mock.jar
+file.reference.spring-mock.jar-1=D:\\WORK\\LIB\\spring-mock.jar
+file.reference.webstart-services.jar=C:\\WORK\\LIB\\webstart-services.jar
+file.reference.webstart-services.jar-1=D:\\WORK\\LIB\\webstart-services.jar
+file.reference.wfapi.jar=C:\\WORK\\LIB\\wfapi.jar
+file.reference.wfapi.jar-1=D:\\WORK\\LIB\\wfapi.jar
+file.reference.WORK-LIB=../LIB
+file.reference.xerces.jar=C:\\WORK\\LIB\\xerces.jar
+file.reference.xerces.jar-1=D:\\WORK\\LIB\\xerces.jar
+file.reference.xml-apis.jar=C:\\WORK\\LIB\\xml-apis.jar
+file.reference.xml-apis.jar-1=D:\\WORK\\LIB\\xml-apis.jar
+file.reference.xRegionTemplate.taglib.jar=C:\\WORK\\LIB\\xRegionTemplate.taglib.jar
+file.reference.xRegionTemplate.taglib.jar-1=D:\\WORK\\LIB\\xRegionTemplate.taglib.jar
+includes=**
+j2ee.deploy.on.save=false
+j2ee.platform=1.4
+j2ee.server.type=JBoss4
+jar.compress=false
+java.source.based=true
+javac.classpath=\
+    ${file.reference.LIB-tomcat}:\
+    ${file.reference.LIB-xdoclet-1.2.3}:\
+    ${file.reference.auriga.jar}:\
+    ${file.reference.castor.jar}:\
+    ${file.reference.com.is21.cifrar.jar}:\
+    ${file.reference.commons-digester-1.7.jar}:\
+    ${file.reference.commons-fileupload.jar}:\
+    ${file.reference.commons-jxpath-1.2.jar}:\
+    ${file.reference.commons-logging-api.jar}:\
+    ${file.reference.commons-logging.jar}:\
+    ${file.reference.commons-math-1.0.jar}:\
+    ${file.reference.dwr.jar}:\
+    ${file.reference.FontBox-0.1.0-dev.jar}:\
+    ${file.reference.gestiondocumental.jar}:\
+    ${file.reference.informa.jar}:\
+    ${file.reference.is21.paginador.jar}:\
+    ${file.reference.iText.jar}:\
+    ${file.reference.iTextXML.jar}:\
+    ${file.reference.jasperreports-3.0.0.jar}:\
+    ${file.reference.jasperreports-extensions-1.3.1.jar}:\
+    ${file.reference.jboss-j2ee.jar}:\
+    ${file.reference.jcommon-1.0.0.jar}:\
+    ${file.reference.jdo.jar}:\
+    ${file.reference.jdom.jar}:\
+    ${file.reference.jfreechart-1.0.3.jar}:\
+    ${file.reference.jmxri.jar}:\
+    ${file.reference.jmxtools.jar}:\
+    ${file.reference.jnlp-servlet.jar}:\
+    ${file.reference.jnlp.jar}:\
+    ${file.reference.jta.jar}:\
+    ${file.reference.junit.jar}:\
+    ${file.reference.log4j-1.2.8.jar}:\
+    ${file.reference.lucene.jar}:\
+    ${file.reference.ojdbc14.jar}:\
+    ${file.reference.openaccess.jar}:\
+    ${file.reference.org.portal.modelo.jar}:\
+    ${file.reference.PDFBox-0.7.3.jar}:\
+    ${file.reference.poi-3.0.1-FINAL-20070705.jar}:\
+    ${file.reference.spring-mock.jar}:\
+    ${file.reference.webstart-services.jar}:\
+    ${file.reference.wfapi.jar}:\
+    ${file.reference.xerces.jar}:\
+    ${file.reference.xml-apis.jar}:\
+    ${file.reference.xRegionTemplate.taglib.jar}:\
+    ${file.reference.LIB-tomcat-1}:\
+    ${file.reference.LIB-xdoclet-1.2.3-1}:\
+    ${file.reference.auriga.jar-1}:\
+    ${file.reference.castor.jar-1}:\
+    ${file.reference.com.is21.cifrar.jar-1}:\
+    ${file.reference.commons-digester-1.7.jar-1}:\
+    ${file.reference.commons-fileupload.jar-1}:\
+    ${file.reference.commons-jxpath-1.2.jar-1}:\
+    ${file.reference.commons-logging-api.jar-1}:\
+    ${file.reference.commons-logging.jar-1}:\
+    ${file.reference.commons-math-1.0.jar-1}:\
+    ${file.reference.dwr.jar-1}:\
+    ${file.reference.FontBox-0.1.0-dev.jar-1}:\
+    ${file.reference.gestiondocumental.jar-1}:\
+    ${file.reference.informa.jar-1}:\
+    ${file.reference.is21.paginador.jar-1}:\
+    ${file.reference.iText.jar-1}:\
+    ${file.reference.iTextXML.jar-1}:\
+    ${file.reference.jasperreports-3.0.0.jar-1}:\
+    ${file.reference.jasperreports-extensions-1.3.1.jar-1}:\
+    ${file.reference.jboss-j2ee.jar-1}:\
+    ${file.reference.jcommon-1.0.0.jar-1}:\
+    ${file.reference.jdo.jar-1}:\
+    ${file.reference.jdom.jar-1}:\
+    ${file.reference.jfreechart-1.0.3.jar-1}:\
+    ${file.reference.jmxri.jar-1}:\
+    ${file.reference.jmxtools.jar-1}:\
+    ${file.reference.jnlp-servlet.jar-1}:\
+    ${file.reference.jnlp.jar-1}:\
+    ${file.reference.jta.jar-1}:\
+    ${file.reference.junit.jar-1}:\
+    ${file.reference.log4j-1.2.8.jar-1}:\
+    ${file.reference.lucene.jar-1}:\
+    ${file.reference.ojdbc14.jar-1}:\
+    ${file.reference.openaccess.jar-1}:\
+    ${file.reference.org.portal.modelo.jar-1}:\
+    ${file.reference.PDFBox-0.7.3.jar-1}:\
+    ${file.reference.poi-3.0.1-FINAL-20070705.jar-1}:\
+    ${file.reference.spring-mock.jar-1}:\
+    ${file.reference.webstart-services.jar-1}:\
+    ${file.reference.wfapi.jar-1}:\
+    ${file.reference.xerces.jar-1}:\
+    ${file.reference.xml-apis.jar-1}:\
+    ${file.reference.xRegionTemplate.taglib.jar-1}
+# Space-separated list of extra javac options
+javac.compilerargs=
+javac.debug=true
+javac.deprecation=false
+javac.processorpath=${javac.classpath}
+javac.source=1.6
+javac.target=1.6
+javac.test.classpath=\
+    ${javac.classpath}:\
+    ${build.classes.dir}:\
+    ${libs.junit.classpath}
+javac.test.processorpath=${javac.test.classpath}
+javadoc.additionalparam=
+javadoc.author=false
+javadoc.encoding=${source.encoding}
+javadoc.noindex=false
+javadoc.nonavbar=false
+javadoc.notree=false
+javadoc.preview=true
+javadoc.private=false
+javadoc.splitindex=true
+javadoc.use=true
+javadoc.version=false
+javadoc.windowtitle=
+jaxbwiz.endorsed.dirs="${netbeans.home}/../ide12/modules/ext/jaxb/api"
+jspcompilation.classpath=${jspc.classpath}:${javac.classpath}
+lib.dir=${file.reference.WORK-LIB}
+persistence.xml.dir=${conf.dir}
+platform.active=default_platform
+resource.dir=setup
+run.test.classpath=\
+    ${javac.test.classpath}:\
+    ${build.test.classes.dir}
+# Space-separated list of JVM arguments used when running a class with a main method or a unit test
+# (you may also define separate properties like run-sys-prop.name=value instead of -Dname=value):
+runmain.jvmargs=
+source.encoding=ISO-8859-1
+source.root=.
+src.dir=${file.reference.SIR-APP-src}
+test.src.dir=
+war.content.additional=
+war.ear.name=SIR.war
+war.name=SIR.war
+war.package=true
+web.docbase.dir=web
+webinf.dir=web/WEB-INF
